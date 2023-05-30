@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: platform2-poc
+  labels:
+    app: platform2-poc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: platform2-poc
+  template:
+    metadata:
+      labels:
+        app: platform2-poc
+    spec:
+      containers:
+        - name: platform2-poc
+          image: sachingoyaldocker/sachin-goyal-github-platform2-poc:latest
+          env:
+            - name: SERVER_PORT
+              value: "8080"
+            - name: DATABASE_HOST
+              value: "platform2-poc-db"
+            - name: DATABASE_PORT
+              value: "3306"
+            - name: DATABASE_NAME
+              value: "platform2-poc"
+            - name: DATABASE_USER
+              value: "platform2-poc"
+            - name: DATABASE_PASSWORD
+              value: "password"
+            - name: DATABASE_INITIALIZATION_MODE
+              value: "always"
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: "Always"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: platform2-poc
+  labels:
+    app: platform2-poc
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: platform2-poc
+  type: ClusterIP
