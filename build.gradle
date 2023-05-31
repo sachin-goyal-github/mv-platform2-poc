@@ -17,16 +17,18 @@ ext {
     commonsLang3Version = '3.4'
     mySQLConnectorVersion = '5.1.44'
     junitVersion = '4.12'
+    springFoxVersion = '2.4.0'
 }
 
 dependencies {
     implementation "org.springframework.boot:spring-boot-dependencies:${project.springBootVersion}"
     implementation "org.springframework.boot:spring-boot-starter-web:${project.springBootVersion}"
-    implementation "org.springframework.boot:spring-boot-starter-amqp:${project.springBootVersion}"
     implementation "org.springframework.boot:spring-boot-starter-data-jpa:${project.springBootVersion}"
     implementation "org.springframework.boot:spring-boot-starter-validation:${project.springBootVersion}"
     implementation "org.apache.commons:commons-lang3:${project.commonsLang3Version}"
     implementation "mysql:mysql-connector-java:${project.mySQLConnectorVersion}"
+    implementation "io.springfox:springfox-swagger2:${project.springFoxVersion}"
+    implementation "io.springfox:springfox-swagger-ui:${project.springFoxVersion}"
 
     testImplementation "org.springframework.boot:spring-boot-starter-test:${project.springBootVersion}"
     testImplementation "junit:junit:${project.junitVersion}"

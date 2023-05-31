@@ -2,11 +2,12 @@
 
 Platform2 Proof Of Concept Service
 
-### Installation
-Docker: https://docs.docker.com/docker-for-mac/install/  
-Virtual Box if you don't already have it: `brew install --cask virtualbox`  
-Minikube: `brew install minikube`  
-Kubernetes cli tools: `brew install kubernetes-cli`  
+# Installation
+* Docker: https://docs.docker.com/docker-for-mac/install/  
+* Virtual Box if you don't already have it: `brew install --cask virtualbox`  
+* Minikube: `brew install minikube`  
+* Kubernetes cli tools: `brew install kubernetes-cli`
+* [Optional] for cluster visualisation: `brew install derailed/k9s/k9s`
 
 # Deployments (Local Minikube Cluster)
 
@@ -37,3 +38,10 @@ minikube start
 ```
 kubectl port-forward service/platform2 8081:8080 --namespace=platform2
 ```
+
+## API Playground (Swagger)
+After port forwarding
+```
+http://localhost:8081/swagger-ui.html
+```
+
