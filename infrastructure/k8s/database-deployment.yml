@@ -25,7 +25,7 @@ spec:
         app: platform2-db
     spec:
       containers:
-        - image: cytopia/mysql-5.6
+        - image: biarms/mysql:5.7
           name: platform2-db
           env:
             # Use secret in real usage
