@@ -18,12 +18,22 @@ minikube delete
 minikube start
 ```
 
-## Deploy service
+## Rebuild and Push to Docker Hub
+```
+./rebuildAndPush.sh
+```
+
+## Deploy service Only
+```
+./redeployService.sh
+```
+
+## Deploy service & database
 ```
 ./redeployAll.sh
 ```
 
-## Port forwarding (Preferred)
+## Port forwarding
 ```
-kubectl port-forward service/platform2-poc 8081:8080 --namespace=platform2-poc
+kubectl port-forward service/platform2 8081:8080 --namespace=platform2
 ```

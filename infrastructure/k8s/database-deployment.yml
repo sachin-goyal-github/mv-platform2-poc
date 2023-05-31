@@ -1,58 +1,58 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: platform2-poc-db
+  name: platform2-db
 spec:
   ports:
     - port: 3306
   selector:
-    app: platform2-poc-db
+    app: platform2-db
   clusterIP: None
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: platform2-poc-db
+  name: platform2-db
 spec:
   selector:
     matchLabels:
-      app: platform2-poc-db
+      app: platform2-db
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: platform2-poc-db
+        app: platform2-db
     spec:
       containers:
-        - image: mysql:5.6
-          name: platform2-poc-db
+        - image: cytopia/mysql-5.6
+          name: platform2-db
           env:
             # Use secret in real usage
             - name: MYSQL_ROOT_PASSWORD
               value: password
             - name: MYSQL_DATABASE
-              value: platform2-poc
+              value: platform2
             - name: MYSQL_USER
-              value: platform2-poc
+              value: platform2
             - name: MYSQL_PASSWORD
               value: password
           ports:
             - containerPort: 3306
-              name: platform2-poc-db
+              name: platform2-db
           imagePullPolicy: "Always"
           volumeMounts:
-            - name: platform2-poc-db-persistent-storage
-              mountPath: /var/lib/platform2-poc-db
+            - name: platform2-db-persistent-storage
+              mountPath: /var/lib/platform2-db
       volumes:
-        - name: platform2-poc-db-persistent-storage
+        - name: platform2-db-persistent-storage
           persistentVolumeClaim:
-            claimName: platform2-poc-db-pv-claim
+            claimName: platform2-db-pv-claim
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: platform2-poc-db-pv-volume
+  name: platform2-db-pv-volume
   labels:
     type: local
 spec:
@@ -67,7 +67,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: platform2-poc-db-pv-claim
+  name: platform2-db-pv-claim
 spec:
   storageClassName: manual
   accessModes:

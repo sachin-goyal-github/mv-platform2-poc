@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: platform2-poc
+  name: platform2
   labels:
-    app: platform2-poc
+    app: platform2
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: platform2-poc
+      app: platform2
   template:
     metadata:
       labels:
-        app: platform2-poc
+        app: platform2
     spec:
       containers:
-        - name: platform2-poc
+        - name: platform2
           image: sachingoyaldocker/sachin-goyal-github-platform2-poc:latest
           env:
             - name: SERVER_PORT
               value: "8080"
             - name: DATABASE_HOST
-              value: "platform2-poc-db"
+              value: "platform2-db"
             - name: DATABASE_PORT
               value: "3306"
             - name: DATABASE_NAME
-              value: "platform2-poc"
+              value: "platform2"
             - name: DATABASE_USER
-              value: "platform2-poc"
+              value: "platform2"
             - name: DATABASE_PASSWORD
               value: "password"
             - name: DATABASE_INITIALIZATION_MODE
@@ -39,14 +39,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: platform2-poc
+  name: platform2
   labels:
-    app: platform2-poc
+    app: platform2
 spec:
   ports:
     - protocol: "TCP"
       port: 8080
       targetPort: 8080
   selector:
-    app: platform2-poc
+    app: platform2
   type: ClusterIP
